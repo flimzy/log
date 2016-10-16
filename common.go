@@ -18,6 +18,11 @@ func New(out io.Writer, prefix string, flag int) *Logger {
 	return &Logger{golog.New(out, prefix, flag)}
 }
 
+// Flags returns the output flags for the standard logger.
+func Flags() int {
+	return golog.Flags()
+}
+
 // Print calls log.Print()
 func Print(v ...interface{}) {
 	golog.Print(v...)
@@ -46,4 +51,9 @@ func (l *Logger) Printf(format string, v ...interface{}) {
 // Println calls log.Println()
 func (l *Logger) Println(v ...interface{}) {
 	l.golog.Println(v...)
+}
+
+// Flags returns the output flags for the logger.
+func (l *Logger) Flags() int {
+	return l.golog.Flags()
 }
